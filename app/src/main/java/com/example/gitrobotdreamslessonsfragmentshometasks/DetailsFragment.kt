@@ -23,7 +23,8 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         titleTextView = view.findViewById(R.id.details)
         titleTextView?.text = description
-}
+    }
+
     fun setDescription(title:String){
         description = title
     }

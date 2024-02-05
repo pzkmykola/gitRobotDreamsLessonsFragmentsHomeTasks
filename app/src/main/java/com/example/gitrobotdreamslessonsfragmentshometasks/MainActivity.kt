@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.listContainer) as ListFragment
         val detailsFragment =
             supportFragmentManager.findFragmentById(R.id.detailsContainer) as? DetailsFragment
+
         listFragment.setItemsClickListener {
             if (detailsFragment != null) {
                 detailsFragment.setDescription(it)
