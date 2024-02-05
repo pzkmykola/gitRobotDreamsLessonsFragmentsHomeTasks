@@ -5,13 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class ListFragment : Fragment() {
@@ -32,21 +29,24 @@ class ListFragment : Fragment() {
 
         api.getSuperHeroes()
             .subscribeOn(Schedulers.io())
-            .subscribe({
-                Log.e("SuccessfulResponse","Items were received!")
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({
+                if(it != null) {
+                    val items = it
+                    val myAdapter = SuperheroViewAdapter(items as MutableList<SuperHero>){
+                        Log.e("SuccessfulResponse", "Items were received!")
+                    }
+                    recyclerView.adapter = myAdapter
+                }
             },{
                 Log.e("SuperHeroRequest", "Fetch error ${it.message} on response]")
             })
-        /*val view:RecyclerView = view.findViewById(R.id.recyclerView)
-        val items = arrayListOf<String>()
-        repeat(100) { items.add("Element $it") }
-        val adapter = RecyclerViewA
-        view.adapter = adapter
-        list.onItemClickListener =
-            AdapterView.OnItemClickListener { _,_,_, id -> onItemClick(id.toString())}*/
 
+        recyclerView.apply {
+            // set a LinearLayoutManager to handle Android RecyclerView behavior
+            layoutManager = LinearLayoutManager(activity)
+        }
     }
-
     fun setItemsClickListener(lambda: (String) -> Unit){
         onItemClick = lambda
     }
