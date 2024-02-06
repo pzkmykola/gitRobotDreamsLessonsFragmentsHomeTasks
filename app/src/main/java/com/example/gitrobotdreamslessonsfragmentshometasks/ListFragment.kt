@@ -46,8 +46,11 @@ class ListFragment : Fragment() {
             // set a LinearLayoutManager to handle Android RecyclerView behavior
             layoutManager = LinearLayoutManager(activity)
         }
+
+        //recyclerView.OnItemClickListener{}
     }
     fun setItemsClickListener(lambda: (String) -> Unit){
         onItemClick = lambda
     }
 }
+
