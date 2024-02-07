@@ -15,7 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 //class ListFragment : Fragment() {
 //    var onItemClick: (String) -> Unit = {}
-class ListFragment : Fragment(),  SuperheroViewAdapter.Listener {
+class ListFragment : Fragment(),  SuperheroViewAdapter.OnSuperheroItemClickListener {
 
     private var onItemClick: (String) -> Unit = {}
     override fun onCreateView(

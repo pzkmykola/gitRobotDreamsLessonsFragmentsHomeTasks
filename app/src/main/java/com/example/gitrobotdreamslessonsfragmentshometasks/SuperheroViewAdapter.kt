@@ -11,7 +11,7 @@ import com.google.android.material.animation.AnimatableView
 
 //class SuperheroViewAdapter(private val items:MutableList<SuperHero>, val onClick:(String)->Unit):
 //    RecyclerView.Adapter<SuperheroViewHolder>() {
-class SuperheroViewAdapter(private val items:MutableList<SuperHero>, private var listener: Listener):
+class SuperheroViewAdapter(private val items:MutableList<SuperHero>, private var listener: OnSuperheroItemClickListener):
 
     RecyclerView.Adapter<SuperheroViewAdapter.SuperheroViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperheroViewHolder {
@@ -32,9 +32,22 @@ class SuperheroViewAdapter(private val items:MutableList<SuperHero>, private var
     class  SuperheroViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val title: TextView = itemView.findViewById(R.id.listTitle)
         val image: ImageView = itemView.findViewById(R.id.listImage)
+
+        fun initialize(item: SuperHero, action: OnSuperheroItemClickListener)
+        {
+            this.title.text = item.name
+            val load = Glide.with(this.itemView.context)
+                .load(item.images.url)
+                .into(image)
+
+            this.itemView.setOnClickListener {
+                //action.
+            }
+        }
     }
 
-    interface Listener{
-        fun onClick(lambda: (String) -> Unit)
+    interface OnSuperheroItemClickListener{
+        onItemClick(item: SuperHero, position: Int)
+        //fun onClick(lambda: (String) -> Unit)
     }
 }
