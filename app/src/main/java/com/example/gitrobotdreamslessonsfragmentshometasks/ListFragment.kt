@@ -6,15 +6,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.animation.AnimatableView.Listener
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+//class ListFragment : Fragment() {
+//    var onItemClick: (String) -> Unit = {}
+class ListFragment : Fragment(),  SuperheroViewAdapter.Listener {
 
-class ListFragment : Fragment() {
-    var onItemClick: (String) -> Unit = {}
-
+    private var onItemClick: (String) -> Unit = {}
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,7 +38,7 @@ class ListFragment : Fragment() {
             .subscribe ({
                 if(it != null) {
                     val items = it
-                    val myAdapter = SuperheroViewAdapter(items as MutableList<SuperHero>){
+                    val myAdapter = SuperheroViewAdapter(items as MutableList<SuperHero>, this){
                         Log.e("SuccessfulResponse", "Items were received!")
                     }
                     recyclerView.adapter = myAdapter
@@ -52,7 +55,12 @@ class ListFragment : Fragment() {
         //recyclerView.OnItemClickListener{}
     }
     fun setItemsClickListener(lambda: (String) -> Unit){
-        onItemClick = lambda
+        onItemClick  = lambda
+        Toast.makeText(requireContext(), "Added clicked on set method", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onClick(lambda: (String) -> Unit) {
+        TODO("Not yet implemented")
     }
 }
 
