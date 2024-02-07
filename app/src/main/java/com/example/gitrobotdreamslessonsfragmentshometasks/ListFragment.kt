@@ -13,7 +13,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class ListFragment : Fragment() {
-    private var onItemClick: (String) -> Unit = {}
+    var onItemClick: (String) -> Unit = {}
 
     override fun onCreateView(
         inflater: LayoutInflater,

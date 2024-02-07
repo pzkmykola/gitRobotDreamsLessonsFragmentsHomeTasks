@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class SuperheroViewAdapter(private val items:MutableList<SuperHero>, val onClick:(String)->Unit):
-    RecyclerView.Adapter<SuperheroViewHolder>() {
+//    RecyclerView.Adapter<SuperheroViewHolder>() {
+    RecyclerView.Adapter<SuperheroViewAdapter.SuperheroViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperheroViewHolder {
         val listItemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_layout, parent, false)
         return SuperheroViewHolder(listItemView)
@@ -25,9 +26,8 @@ class SuperheroViewAdapter(private val items:MutableList<SuperHero>, val onClick
         val onClick:String = items[position].name.toString()
         holder.itemView.setOnClickListener { onClick(onClick)}
     }
-}
-
-class  SuperheroViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-    val title: TextView = itemView.findViewById(R.id.listTitle)
-    val image: ImageView = itemView.findViewById(R.id.listImage)
+    class  SuperheroViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        val title: TextView = itemView.findViewById(R.id.listTitle)
+        val image: ImageView = itemView.findViewById(R.id.listImage)
+    }
 }
