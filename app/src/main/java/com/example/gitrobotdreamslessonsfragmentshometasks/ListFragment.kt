@@ -1,5 +1,6 @@
 package com.example.gitrobotdreamslessonsfragmentshometasks
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,6 +23,7 @@ class ListFragment : Fragment() {
         return inflater.inflate(R.layout.list_fragment_layout, container, false)
     }
 
+    @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView:RecyclerView = view.findViewById(R.id.recyclerView)
