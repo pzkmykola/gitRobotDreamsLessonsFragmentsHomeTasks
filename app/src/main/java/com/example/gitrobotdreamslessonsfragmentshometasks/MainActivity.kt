@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         val detailsFragment =
             supportFragmentManager.findFragmentById(R.id.detailsContainer) as? DetailsFragment
 
-        listFragment.setItemsClickListener {
+        listFragment.setOnItemsClickListener {
             if (detailsFragment != null) {
                 detailsFragment.setDescription(it)
                 detailsFragment.show()
