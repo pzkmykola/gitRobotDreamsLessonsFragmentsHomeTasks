@@ -13,13 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gitrobotdreamslessonsfragmentshometasks.SuperheroViewAdapter.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-//class ListFragment : Fragment() {
-//    var onItemClick: (String) -> Unit = {}
-class ListFragment : Fragment(), OnSuperheroItemClickListener {
 
-    //private var mOnClick:OnSuperheroItemClickListener? = null
-    private var mOnClick:(String) -> Unit = {}
-    //    private var onItemClick: (String) -> Unit = {}
+class ListFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,7 +36,9 @@ class ListFragment : Fragment(), OnSuperheroItemClickListener {
             .subscribe ({
                 if(it != null) {
                     val items = it
-                    val myAdapter = SuperheroViewAdapter(items as MutableList<SuperHero>, this)
+                    val myAdapter = SuperheroViewAdapter(items as MutableList<SuperHero>, clickListener = {name ->
+                        val activity = activity as OnItemClickListener
+                        activity.onClick(name)})
                     recyclerView.adapter = myAdapter
                     Toast.makeText(requireContext(), "Maybe, listener was set",Toast.LENGTH_SHORT).show()
                 }
@@ -52,20 +50,6 @@ class ListFragment : Fragment(), OnSuperheroItemClickListener {
             // set a LinearLayoutManager to handle Android RecyclerView behavior
             layoutManager = LinearLayoutManager(activity)
         }
-
-        //recyclerView.adapter.OnItemClickListener{}
-    }
-    fun setOnItemsClickListener(lambda: (String) -> Unit){
-        mOnClick = lambda
-        Toast.makeText(requireContext(), "Added clicked on set method", Toast.LENGTH_SHORT).show()
-    }
-//    fun setOnItemsClickListener(lambda: (String) -> Unit){
-//        onItemClick = lambda
-//        Toast.makeText(requireContext(), "Added clicked on set method", Toast.LENGTH_SHORT)
-//            .show()
-//    }
-    override fun onItemClick(item: SuperHero, position: Int) {
-        Toast.makeText(requireContext(), "onClickListene in pos. ${position.toString()}", Toast.LENGTH_SHORT).show()
     }
 }
 
