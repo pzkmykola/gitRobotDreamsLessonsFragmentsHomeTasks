@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.gitrobotdreamslessonsfragmentshometasks.R.drawable
 
 class SuperheroViewAdapter(private var items:MutableList<SuperHero>, private var  clickListener:(String)->Unit):
     RecyclerView.Adapter<SuperheroViewAdapter.SuperheroViewHolder>() {

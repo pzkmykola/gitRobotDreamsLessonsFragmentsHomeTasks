@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 class DetailsFragment : Fragment() {
-    private var description:String = ""
-    var titleTextView: TextView? = null
-
+    private var superHeroName:String = ""
+    private lateinit var superHeroPhoto:ImageView
+    var nameTextView: TextView? = null
+    var imageImageView: ImageView? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -21,15 +23,23 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        titleTextView = view.findViewById(R.id.details)
-        titleTextView?.text = description
+        nameTextView = view.findViewById(R.id.nameOfSH)
+        imageImageView = view.findViewById(R.id.imageOfSH)
+        nameTextView?.text = superHeroName
     }
 
-    fun setDescription(title:String){
-        description = title
+    fun setImage(image:ImageView){
+        superHeroPhoto = image
     }
 
-    fun show(){
-        titleTextView?.text = description
+    fun setSuperHeroName(name:String){
+        superHeroName = buildString {
+            append("Name of this SuperHero: ")
+            append( name )
+        }
     }
+
+//    fun show(){
+//        nameTextView?.text = superHeroName
+//    }
 }

@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     override fun onClick(name: String) {
         val detailsFragmentToAdd = DetailsFragment()
-        detailsFragmentToAdd.setDescription(name)
+        detailsFragmentToAdd.setSuperHeroName(name)
         supportFragmentManager.beginTransaction()
             .add(R.id.listContainer, detailsFragmentToAdd)
             .addToBackStack("details_fragment")
