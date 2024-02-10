@@ -18,7 +18,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         detailsFragmentToAdd.setSuperHeroSomeBioDetails(itemSuperHero)
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.listContainer, detailsFragmentToAdd)
+            //.add(R.id.listContainer, detailsFragmentToAdd)
+            .replace(R.id.listContainer, detailsFragmentToAdd)
             .addToBackStack("details_fragment")
             .commit()
     }
