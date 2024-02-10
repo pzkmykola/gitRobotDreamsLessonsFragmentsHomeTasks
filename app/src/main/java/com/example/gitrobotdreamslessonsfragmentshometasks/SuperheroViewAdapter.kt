@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gitrobotdreamslessonsfragmentshometasks.R.drawable
 
-class SuperheroViewAdapter(private var items:MutableList<SuperHero>, private var  clickListener:(String)->Unit):
+class SuperheroViewAdapter(private var items:MutableList<SuperHero>, private var  clickListener:(SuperHero)->Unit):
     RecyclerView.Adapter<SuperheroViewAdapter.SuperheroViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperheroViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_layout, parent, false)
@@ -22,7 +22,7 @@ class SuperheroViewAdapter(private var items:MutableList<SuperHero>, private var
     override fun onBindViewHolder(holder: SuperheroViewHolder, position: Int) {
         holder.initialize(items[position])
         holder.itemView.setOnClickListener {
-            clickListener(items[position].name)
+            clickListener(items[position])
         }
     }
     inner class  SuperheroViewHolder(listItemView: View): RecyclerView.ViewHolder(listItemView){

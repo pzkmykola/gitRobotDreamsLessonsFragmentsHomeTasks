@@ -36,11 +36,11 @@ class ListFragment : Fragment() {
             .subscribe ({
                 if(it != null) {
                     val items = it
-                    val myAdapter = SuperheroViewAdapter(items as MutableList<SuperHero>, clickListener = {name ->
+                    val myAdapter = SuperheroViewAdapter(items as MutableList<SuperHero>, clickListener = {item:SuperHero ->
                         val activity = activity as OnItemClickListener
-                        activity.onClick(name)})
+                        activity.onClick(item)})
                     recyclerView.adapter = myAdapter
-                    Toast.makeText(requireContext(), "Maybe, listener was set",Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(requireContext(), "Maybe, listener was set",Toast.LENGTH_SHORT).show()
                 }
             },{
                 Log.e("SuperHeroRequest", "Fetch error ${it.message} on response]")

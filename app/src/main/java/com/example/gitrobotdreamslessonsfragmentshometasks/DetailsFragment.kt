@@ -1,18 +1,22 @@
 package com.example.gitrobotdreamslessonsfragmentshometasks
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 class DetailsFragment : Fragment() {
     private var superHeroName:String = ""
-    private lateinit var superHeroPhoto:ImageView
+    private var superHeroPhoto:String = ""
     var nameTextView: TextView? = null
-    var imageImageView: ImageView? = null
+    lateinit var imageImageView: ImageView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,10 +30,11 @@ class DetailsFragment : Fragment() {
         nameTextView = view.findViewById(R.id.nameOfSH)
         imageImageView = view.findViewById(R.id.imageOfSH)
         nameTextView?.text = superHeroName
+        if(superHeroPhoto != "") showImage()
     }
 
-    fun setImage(image:ImageView){
-        superHeroPhoto = image
+    fun setImage(item: SuperHero){
+        superHeroPhoto = item.images.largeImage
     }
 
     fun setSuperHeroName(name:String){
@@ -39,7 +44,15 @@ class DetailsFragment : Fragment() {
         }
     }
 
-//    fun show(){
-//        nameTextView?.text = superHeroName
-//    }
+    fun showImage()
+    {
+        //val myContext = requireContext()
+        Glide.with(this)
+            .load(superHeroPhoto)
+            .apply(RequestOptions()
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(com.google.android.material.R.drawable.mtrl_ic_error)
+            )
+            .into(imageImageView)
+    }
 }

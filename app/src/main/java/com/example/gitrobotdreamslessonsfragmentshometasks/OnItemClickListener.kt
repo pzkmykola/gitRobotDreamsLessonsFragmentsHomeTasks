@@ -1,5 +1,5 @@
 package com.example.gitrobotdreamslessonsfragmentshometasks
 
 interface OnItemClickListener {
-    fun onClick(name:String)
+    fun onClick(itemSuperHero: SuperHero)
 }

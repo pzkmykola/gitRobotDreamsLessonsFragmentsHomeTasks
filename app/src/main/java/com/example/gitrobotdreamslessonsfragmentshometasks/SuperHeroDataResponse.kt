@@ -54,7 +54,7 @@ data class Connections(
 
 data class Images(
     val xs: String,
-    @SerializedName("sm")  val sm: String,
+    @SerializedName("sm")  val url: String,
     val md: String,
-    @SerializedName("lg")  val url: String,
+    @SerializedName("lg")  val largeImage: String,
 )

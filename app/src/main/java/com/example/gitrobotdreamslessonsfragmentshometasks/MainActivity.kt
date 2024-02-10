@@ -9,9 +9,10 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         setContentView(R.layout.activity_main)
     }
 
-    override fun onClick(name: String) {
+    override fun onClick(itemSuperHero: SuperHero) {
         val detailsFragmentToAdd = DetailsFragment()
-        detailsFragmentToAdd.setSuperHeroName(name)
+        detailsFragmentToAdd.setSuperHeroName(itemSuperHero.name)
+        detailsFragmentToAdd.setImage(itemSuperHero)
         supportFragmentManager.beginTransaction()
             .add(R.id.listContainer, detailsFragmentToAdd)
             .addToBackStack("details_fragment")
