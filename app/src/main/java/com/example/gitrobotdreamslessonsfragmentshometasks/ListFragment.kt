@@ -40,7 +40,6 @@ class ListFragment : Fragment() {
                         val activity = activity as OnItemClickListener
                         activity.onClick(item)})
                     recyclerView.adapter = myAdapter
-                    //Toast.makeText(requireContext(), "Maybe, listener was set",Toast.LENGTH_SHORT).show()
                 }
             },{
                 Log.e("SuperHeroRequest", "Fetch error ${it.message} on response]")

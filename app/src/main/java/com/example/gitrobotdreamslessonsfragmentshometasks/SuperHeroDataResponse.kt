@@ -25,7 +25,7 @@ data class Powerstats(
 
 data class Appearance(
     val gender: String,
-    val race: String?,
+    val race: String,
     val height: List<String>,
     val weight: List<String>,
     val eyeColor: String,
@@ -38,7 +38,7 @@ data class Biography(
     val aliases: List<String>,
     val placeOfBirth: String,
     val firstAppearance: String,
-    val publisher: String?,
+    val publisher: String,
     val alignment: String,
 )
 
