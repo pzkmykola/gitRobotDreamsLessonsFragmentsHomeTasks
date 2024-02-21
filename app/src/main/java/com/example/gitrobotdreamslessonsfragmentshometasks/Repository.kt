@@ -1,10 +1,12 @@
 package com.example.gitrobotdreamslessonsfragmentshometasks
 
 import retrofit2.Retrofit
+import javax.inject.Singleton
 
-class Repository (private val client: Retrofit) {
+@Singleton
+class Repository (val apiClient: ApiClient) {
     suspend fun getSuperHeroesByCR() : SuperHeroDataResponse{
-        val apiInterfase = client.create(ApiInterface::class.java)
+        val apiInterfase = apiClient.client.create(ApiInterface::class.java)
         return apiInterfase.getSuperHeroesByCR()
     }
 }
