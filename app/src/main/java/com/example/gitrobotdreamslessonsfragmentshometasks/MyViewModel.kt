@@ -7,9 +7,11 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MyViewModel : ViewModel() {
-    private val repo = MyApplication.getApp().repo
+@Singleton
+class MyViewModel @Inject constructor(val repo:Repository): ViewModel() {
     private var _uiState = MutableLiveData<UIState>(UIState.Empty)
     val uiState: LiveData<UIState> = _uiState
     fun getData() {

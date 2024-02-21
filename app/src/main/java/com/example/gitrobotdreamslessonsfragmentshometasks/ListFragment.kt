@@ -12,9 +12,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gitrobotdreamslessonsfragmentshometasks.SuperheroViewAdapter.*
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ListFragment : Fragment() {
-
+    @Inject
+    lateinit var viewModel:MyViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,7 +31,7 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView:RecyclerView = view.findViewById(R.id.recyclerView)
-        val viewModel = ViewModelProvider(this@ListFragment)[MyViewModel::class.java]
+        //val viewModel = ViewModelProvider(this@ListFragment)[MyViewModel::class.java]
         viewModel.getData()
 
         viewModel.uiState.observe(viewLifecycleOwner) {
