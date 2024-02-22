@@ -2,7 +2,9 @@ package com.example.gitrobotdreamslessonsfragmentshometasks
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +20,6 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         detailsFragmentToAdd.setSuperHeroSomeBioDetails(itemSuperHero)
 
         supportFragmentManager.beginTransaction()
-            //.add(R.id.listContainer, detailsFragmentToAdd)
             .replace(R.id.listContainer, detailsFragmentToAdd)
             .addToBackStack("details_fragment")
             .commit()
