@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -31,15 +32,18 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView:RecyclerView = view.findViewById(R.id.recyclerView)
-        //val viewModel = ViewModelProvider(this@ListFragment)[MyViewModel::class.java]
+        val progressBar:ProgressBar = view.findViewById(R.id.progressBar)
         viewModel.getData()
 
         viewModel.uiState.observe(viewLifecycleOwner) {
             when (it) {
                 is MyViewModel.UIState.Empty -> {}
-                is MyViewModel.UIState.Processing -> {}
+                is MyViewModel.UIState.Processing -> {
+                    progressBar.visibility = View.VISIBLE
+                }
 
                 is MyViewModel.UIState.Result -> {
+                    progressBar.visibility = View.INVISIBLE
                     val items = it.list
                     val myAdapter = SuperheroViewAdapter(
                         items as MutableList<SuperHero>,
